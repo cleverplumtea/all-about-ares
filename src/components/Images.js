@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-
 import spinner from "../assets/spinner.gif";
+import API_KEY from ".../secrets";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    //     backgroundImage: `url(${lines})`,
-    //     backgroundPosition: "bottom",
-    //     backgroundSize: "cover",
-    //     backgroundRepeat: "no-reapeat",
     height: "100vh",
     marginTop: "-2em",
-    //     marginTop: ".5em",
   },
   textField: {
     height: "4em",
@@ -32,7 +27,7 @@ const sols = () => {
   let utcLanding = 1344230220000;
   let oneSol = 88775.244;
   let currentSols = (Date.now() - utcLanding) / 1000 / oneSol;
-  return Math.floor(currentSols);
+  return Math.ceil(currentSols);
 };
 
 const solsToEarthDate = (sols) => {
@@ -45,16 +40,15 @@ const solsToEarthDate = (sols) => {
 
 const Images = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const [count, setCount] = useState(0);
   const [image, setImage] = useState("");
-  const [date, setDate] = useState(sols() - 2);
+  const [date, setDate] = useState(sols() - 1);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const request = async () => {
       let res = await axios(
-        `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${date}&api_key=vDaQJdr6dgXmGczRScqjafQlSg81cOYbvmqv8839`
+        `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${date}&api_key=${API_KEY}`
       );
       if (res.data.photos.length > 0) {
         if (count > res.data.photos.length - 1) {
@@ -65,8 +59,6 @@ const Images = () => {
         console.log(res.data.photos[count]);
       } else setImage(null);
       setLoading(true);
-
-      // console.log(res.data.photos[0].img_src);
     };
     request();
   }, [date, count]);
