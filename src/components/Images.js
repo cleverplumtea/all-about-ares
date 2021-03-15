@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import spinner from "../assets/spinner.gif";
-import API_KEY from ".../secrets";
+import API_KEY from "../../secrets.js";
 
 const useStyles = makeStyles((theme) => ({
   container: {

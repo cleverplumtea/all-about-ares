@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     width: "9em",
     height: "9.8em",
     backgroundColor: "#000",
-    //     opacity: ".3",
     marginLeft: "5em",
     marginTop: "-13em",
   },
