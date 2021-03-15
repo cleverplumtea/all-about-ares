@@ -2,7 +2,7 @@
 
 Interactive site showcasing data and images from Mars Curiosity Rover using NASA APIs.
 
-Built using Javascript, React, React Hooks, and Material-UI
+Built using Javascript, React, React Hooks, and Material-UI.
 
 https://api.nasa.gov/
 
