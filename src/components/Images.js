@@ -23,18 +23,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const utcLanding = 1344230220000;
+const oneSol = 88775.244;
+
 const sols = () => {
-  let utcLanding = 1344230220000;
-  let oneSol = 88775.244;
-  let currentSols = (Date.now() - utcLanding) / 1000 / oneSol;
+  const currentSols = (Date.now() - utcLanding) / 1000 / oneSol;
   return Math.ceil(currentSols);
 };
 
 const solsToEarthDate = (sols) => {
-  let utcLanding = 1344230220000;
-  let oneSol = 88775244;
-  let earthDate = utcLanding + sols * oneSol;
-
+  const earthDate = utcLanding + sols * oneSol;
   return new Date(earthDate).toUTCString().slice(5, 16);
 };
 
